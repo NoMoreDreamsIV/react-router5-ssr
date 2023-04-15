@@ -5,3 +5,4 @@ _dest/*.js.*
 *.LICENSE.txt
 package-lock.json
 
+/server.ssr.js
