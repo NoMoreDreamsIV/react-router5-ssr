@@ -1,11 +1,14 @@
 import { readFileSync, existsSync, lstatSync } from 'node:fs';
 import micro, { send } from 'micro';
 import { router } from './router.mjs';
+import { renderToString } from 'react-dom/server';
+
 
 import Root from './Root.jsx';
 
+
 function getHTML() {
-    return readFileSync('./_dest/index.html', 'utf-8').replace('<div id="react-root"></div>', `<div id="react-root">${Root()}</div>`);
+    return readFileSync('./_dest/index.html', 'utf-8').replace('<div id="react-root"></div>', `<div id="react-root">${renderToString(Root())}</div>`);
 }
 
 const server = micro(async (request, response) => {
